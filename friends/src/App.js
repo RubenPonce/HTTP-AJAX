@@ -54,16 +54,19 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <h1>Friends: </h1>
+        <div className="friend-container">
         {this.state.friends.map(friend => (
           <Friends
             deleteFriend={this.deleteFriend}
             editFriend={this.editFriend}
             key={friend.id}
             friend={friend}
+           
           />
         ))}
+        </div>
         <MakeNewFriends addFriend={this.addFriend} />
       </div>
     );

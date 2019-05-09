@@ -1,0 +1,28 @@
+.friend-container{
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    
+}
+.form-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.edit-friend input{
+    width: 85%;
+    margin: .5em auto;
+}
+.friend-card{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 30%;
+    margin: 1em .5em;
+}
+.edit-friend p, .edit-friend h2{
+    text-align: left;
+    margin: .5em 1em;
+    line-height: 1.6;
+}
