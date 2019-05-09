@@ -48,6 +48,7 @@ let friends = [
   },
 ];
 
+
 app.use(cors());
 app.use(bodyParser.json());
 

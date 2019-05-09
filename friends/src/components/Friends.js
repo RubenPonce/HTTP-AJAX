@@ -1,6 +1,6 @@
 import React from "react";
 import { Collapse, Card, Form, Label, Input, Button } from "reactstrap";
-import "./Friends.css"
+import "./Friends.css";
 export default class Friends extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +8,7 @@ export default class Friends extends React.Component {
       name: "",
       age: "",
       email: "",
-      enableEdit: false,
+      toggleEdit: false
     };
   }
   handleChange = event => {
@@ -23,75 +23,85 @@ export default class Friends extends React.Component {
     this.props.editFriend(obj);
     this.setState({
       name: "",
-      age:"",
+      age: "",
       email: "",
-      enableEdit: !this.state.enableEdit
-    })
+      toggleEdit: !this.state.toggleEdit
+    });
   };
-  
 
-  enableEdit = (e)=>{
+  toggleEdit = e => {
     e.preventDefault();
     this.setState({
-      enableEdit: !this.state.enableEdit
-    })
-  }
+      toggleEdit: !this.state.toggleEdit
+    });
+  };
 
   render() {
     return (
       <Card className="friend-card">
-      
-       
         <Form onSubmit={this.formSubmit} className="edit-friend">
-        <div className={this.state.enableEdit ===false ? "form-buttons" : null}>
-       {this.state.enableEdit===false ?  <Button onClick={() => this.props.deleteFriend(this.props.friend)} color="danger" outline >X</Button> : null}
-       {this.state.enableEdit===false ? <Button onClick={this.enableEdit} outline ><i className="far fa-edit"></i></Button>: <div className="form-buttons"><Button color="primary" type="submit">Update</Button><Button onClick={this.enableEdit} color="secondary"><i className="fas fa-arrow-left"></i></Button></div>}
-       </div>
-        <h3 >
-          {" "}
-          {this.props.friend.name}
-        </h3>
-        <p >
-          age: {this.props.friend.age}
-        </p>
-        <p >
-          contact: {this.props.friend.email} 
-        </p>
-        
-       
+          <div
+            className={this.state.toggleEdit === false ? "form-buttons" : null}
+          >
+            {this.state.toggleEdit === false ? (
+              <Button
+                onClick={() => this.props.deleteFriend(this.props.friend)}
+                color="danger"
+                outline
+              >
+                X
+              </Button>
+            ) : null}
+            {this.state.toggleEdit === false ? (
+              <Button onClick={this.toggleEdit} outline>
+                <i className="far fa-edit" />
+              </Button>
+            ) : (
+              <div className="form-buttons">
+                <Button color="primary" type="submit">
+                  Update
+                </Button>
+                <Button onClick={this.toggleEdit} color="secondary">
+                  <i className="fas fa-arrow-left" />
+                </Button>
+              </div>
+            )}
+          </div>
+          <h3> {this.props.friend.name}</h3>
+          <p>age: {this.props.friend.age}</p>
+          <p>contact: {this.props.friend.email}</p>
 
-        <Collapse isOpen={this.state.enableEdit} className="friend-form">
-          <Label htmlFor="name">Name</Label>
-          <Input
-            required
-            value={this.state.name}
-            onChange={this.handleChange}
-            type="text"
-            placeholder=".."
-            name={"name"}
-          />
+          <Collapse isOpen={this.state.toggleEdit} className="friend-form">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              required
+              value={this.state.name}
+              onChange={this.handleChange}
+              type="text"
+              placeholder=".."
+              name={"name"}
+            />
 
-          <Label htmlFor="age">Age</Label>
-          <Input
-            required
-            value={this.state.age}
-            onChange={this.handleChange}
-            type="text"
-            placeholder=".."
-            name={"age"}
-          />
+            <Label htmlFor="age">Age</Label>
+            <Input
+              required
+              value={this.state.age}
+              onChange={this.handleChange}
+              type="text"
+              placeholder=".."
+              name={"age"}
+            />
 
-          <Label htmlFor="email">email</Label>
-          <Input
-            required
-            value={this.state.email}
-            onChange={this.handleChange}
-            type="text"
-            placeholder=".."
-            name={"email"}
-          />
-        </Collapse>
-          
+            <Label htmlFor="email">email</Label>
+            <Input
+              required
+              value={this.state.email}
+              onChange={this.handleChange}
+              type="text"
+              placeholder=".."
+              name={"email"}
+            />
+          </Collapse>
         </Form>
       </Card>
     );
